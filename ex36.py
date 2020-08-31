@@ -33,7 +33,12 @@ from datetime import *
 
 
 prompt = "> "
+
 inventory = []
+
+trap_room4 = True
+trap_room6 = True
+
 giant_rat_alive = True
 big_fat_goblin_alive = True
 skeleton_warrior_alive = True
@@ -47,6 +52,13 @@ red_dragon_attacks = ["fire breath", "stomp", "fyling kick"]
 health = 100
 attack = 5
 defense = 0
+
+
+def dead():
+    print("Game over!  Good luck next time.")
+    print("-" * 32)
+    print()
+    start()
 
 
 def monster_killed(monster):
@@ -148,14 +160,32 @@ def fight(monster, monster_health, monster_attack, prev_room, next_room):
             print(
                 f"The {monster} uses {monster_move(monster)} and deals {monster_damage} damage")
             health -= monster_damage
+
+            if health <= 0:
+                dead()
+
             print(f"You have {health} health left.")
+
         elif "attack" in choice:
             print(f"You swing your sword and deal {attack} damage.")
+
             monster_health -= attack
+
+            if monster_health <= 0:
+                print(f"You defeated the {monster}")
+                print()
+                monster_killed(monster)
+                go_to_room(next_room)
+
             print(f"The {monster} has {monster_health} health left.")
             print(
                 f"The {monster} uses {monster_move(monster)} and deals {monster_damage} damage")
+
             health -= monster_damage
+
+            if health <= 0:
+                dead()
+
             print(f"You have {health} health left.")
         elif "block" in choice:
             print("You use your shield to block the attack.")
@@ -165,11 +195,6 @@ def fight(monster, monster_health, monster_attack, prev_room, next_room):
             go_to_room(prev_room)
         else:
             print("I dont know what that means...")
-
-        if monster_health <= 0:
-            print(f"You defeated the {monster}")
-            monster_killed(monster)
-            go_to_room(next_room)
 
 
 def start():
@@ -230,6 +255,8 @@ def room2():
 
 
 def room3():
+    global giant_rat_alive
+
     print("To the west is a wooden door.")
     print("To the east is a bridge.")
 
@@ -257,39 +284,170 @@ def room3():
 
 
 def room4():
-    print("typ 'back' to go to previous room")
-    choice = input(prompt)
+    global trap_room4
+    global health
 
-    if choice == "back":
-        room3()
+    print("You enter a room with a big tree in the middle and light rays shimmering through a hole in the ceiling.")
+    print("To the west is a bridge.")
+    print("To the north is a wooden door.")
+
+    if trap_room4 == True:
+        print("To the east is a ladder.")
+    else:
+        print("To the east is a broken ladder.")
+
+    if "iron key" in inventory:
+        print("To the south is an iron door with a lock.")
+    else:
+        print("To the south is an iron door.")
+
+    while True:
+        choice = input(prompt)
+
+        if "west" in choice or "bridge" in choice:
+            room3()
+        elif "north" in choice or "wooden door" in choice:
+            room5()
+        elif "east" in choice or "ladder" in choice:
+            if trap_room4 == True:
+                print("You attempt to climb the ladder but the ladder breaks.")
+                print(
+                    "You fall backwards to the ground, hit your head and loose 20 healthpoints.")
+                health -= 20
+
+                if health <= 0:
+                    dead()
+
+                print(f"You have {health} healthpoints.")
+                trap_room4 = False
+            else:
+                print("The ladder is broken.")
+        elif "south" in choice or "iron door" in choice:
+            if "iron key" in inventory:
+                room6()
+            else:
+                print("The iron door is locked, go find the key.")
+        else:
+            print("I dont know what that means...")
 
 
 def room5():
-    print()
+    print("You enter the room and you look around.")
+    print("There are shelfs with books and other stuff in this room.")
+
+    if not "armor" in inventory:
+        print("And in the corner is an armor.")
+
+    if not "potion" in inventory:
+        print("Next to some books you see a red potion.")
+
+    print("To the south is a wooden door.")
+
+    while True:
+        choice = input(prompt)
+
+        if "armor" in choice and not "armor" in inventory:
+            print("You take the armor and put it on.")
+            print("Lucky you, it fits perfectly.")
+            add_to_inventory("armor")
+        elif "potion" in choice and not "potion" in inventory:
+            print("You take the potion.")
+            add_to_inventory("potion")
+        elif "shelf" in choice or "key" in choice and not "iron key" in inventory:
+            print("Wow! You found an iron key.")
+            add_to_inventory("iron key")
+        elif "south" in choice or "door" in choice:
+            room4()
+        else:
+            print("I dont know what that means...")
 
 
 def room6():
-    print()
+    global health
+    global trap_room6
+
+    print("You enter a pretty dark room.")
+    print("The only light source comes through that hole in the wall.")
+    print("In a corner you can see a lever.")
+    print("To the north is an iron door.")
+    print("To the east is a hole.")
+
+    while True:
+        choice = input(prompt)
+
+        if "north" in choice or "door" in choice:
+            room4()
+        elif "east" in choice or "hole" in choice:
+            room7()
+        elif "lever" in choice:
+            if trap_room6 == True:
+                print("A rock falls from the ceiling and hits your head.")
+                health -= 10
+                trap_room6 = False
+                print(f"That hurts... You have {health} healthpoints left.")
+            else:
+                print("Nothing happens.")
+        else:
+            print("I dont know what that means...")
 
 
 def room7():
-    print()
+    global big_fat_goblin_alive
+
+    if big_fat_goblin_alive == True:
+        print("You squeeze yourself through that hole and see a big fat goblin holding a torch.")
+        fight("big fat goblin", 80, 50, 6, 8)
+    else:
+        print("This room is empty except for that dead fat goblin.")
+
+    print("To the west is a hole in the wall.")
+    print("To the east is a wooden door.")
+
+    while True:
+        choice = input(prompt)
+
+        if "west" in choice or "hole" in choice:
+            room6()
+        elif "east" in choice or "door" in choice:
+            room8()
+        else:
+            print("I dont know what that means...")
 
 
 def room8():
-    print()
+    print("You enter a room with a bunch of torches on the walls.")
+    print("To the west is a wooden door.")
+    print("To the north is an iron door with a skull on it.")
+    print("To the east is a narrow path.")
+    print("To the south is a ladder.")
+
+    while True:
+        chocie = input(prompt)
+
+        if "west" in choice or "wooden door" in choice:
+            room7()
+        elif "north" in choice or "iron door" in choice:
+            if not "golden key" in inventory:
+                print("The door is locked you need a key.")
+            else:
+                room11()
+        elif "east" in choice or "path" in choice:
+            room9()
+        elif "south" in choice or "ladder" in choice:
+            print("You climb the ladder succesfully.")
+            room10()
 
 
 def room9():
-    print()
+    print("room 9")
 
 
 def room10():
-    print()
+    print("room 10")
 
 
 def room11():
-    print()
+    print("room 11")
 
 
 start()
