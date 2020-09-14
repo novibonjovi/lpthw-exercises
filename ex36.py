@@ -436,18 +436,99 @@ def room8():
         elif "south" in choice or "ladder" in choice:
             print("You climb the ladder succesfully.")
             room10()
+        else:
+            print("I dont know what that means...")
 
 
 def room9():
-    print("room 9")
+    global skeleton_warrior_alive
+
+    if skeleton_warrior_alive == True:
+        print("You take the narrow path and enter a room and a skeleton suddenly attacks you! ")
+        fight("skeleton warrior", 100, 55, 8, 8)
+
+        add_to_inventory("golden key")
+
+        print("The skeleton dropped a shiny golden key.")
+        print("You take the key and return to the previous room.")
+    else:
+        print("You take the narrow path and enter the room.")
+        print("There is only a couple of bones on the floor nothing and nothing else.")
+
+    print("To the west is a narrow path.")
+
+    while True:
+        choice = input(prompt)
+
+        if "west" in choice or "path" in choice:
+            room8()
+        else:
+            print("I dont know what that means...")
 
 
 def room10():
-    print("room 10")
+    print("You see a blacksmith sitting alone in the corner.")
+
+    if "sword+" in inventory:
+        print("Blacksmith: Hi young adventurer, would you like me to repair your sword?")
+
+        choice = input(prompt)
+
+        if "yes" in choice or "repair" in choice:
+            print(
+                "The blacksmith takes your sword and his hammer and starts working...")
+            print("He gives you back your fixed sword, damn looks good.")
+            print("Blacksmith: Take this potion too, you might need it soon.")
+
+            add_to_inventory("potion")
+            add_to_inventory("sword+")
+        elif "no" in choice:
+            print("Totally up to you my friend.")
+        else:
+            pass
+
+        print("To the north is a ladder.")
+
+        while True:
+            choice = input(prompt)
+
+            if "north" in choice or "ladder" in choice:
+                room8()
+            elif "repair" in choice or "blacksmith" in choice:
+                print("Looks like he is ignoring you...")
+            else:
+                print("I dont know what that means...")
 
 
 def room11():
     print("room 11")
+
+    print("You use the golden key to open this creepy looking door.")
+    print("You are pushing the door really hard to open it.")
+    print("A deep voice in this dark room: Who dares to disturb my sleep?")
+    print("Flames light up the room and you see a really really really big red dragon!")
+
+    while True:
+        choice = input(prompt)
+
+        if "fight" in choice or "attack" in choice or "hit" in choice:
+            fight("red dragon", 170, 65, 8, 12)
+            room12()
+        elif "sing" in choice or "lullaby" in choice:
+            print("You start singing for the dragon.")
+            print("The dragon's eyes become heavy and he falls back to a deep sleep.")
+            print("Crazy but this really worked.")
+
+            room12()
+        else:
+            print("I dont know what that means...")
+
+
+def room12():
+    print("You see another door behind the dragon.")
+    print("You open the door and you found the dragon's treasures!")
+    print("It's a huge room full of gold, gems and other fancy looking medieval stuff.")
+    print("Yay! Victory!!!")
 
 
 start()
