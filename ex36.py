@@ -57,8 +57,6 @@ defense = 0
 def dead():
     print("Game over!  Good luck next time.")
     print("-" * 32)
-    print()
-    start()
 
 
 def monster_killed(monster):
@@ -91,6 +89,8 @@ def go_to_room(num):
         room8()
     elif num == 9:
         room9()
+    elif num == 12:
+        room12()
 
 
 def heal_self():
@@ -121,11 +121,13 @@ def monster_move(monster):
 
 def fight(monster, monster_health, monster_attack, prev_room, next_room):
     global health
+    global defense
+    global inventory
 
     if "sword" in inventory:
         attack = 20
 
-    if "sword+" in inventory:
+    if "+" in inventory:
         attack = 40
 
     if "shield" in inventory:
@@ -140,7 +142,7 @@ def fight(monster, monster_health, monster_attack, prev_room, next_room):
 
     if "potion" in inventory:
         print("+ You can use a potion to heal yourself.")
-    if "sword" in inventory or "sword+" in inventory:
+    if "sword" in inventory or "+" in inventory:
         print(f"+ You can attack the {monster} with your weapon.")
     else:
         print(f"+ You can attack the {monster} with your fists.")
@@ -154,17 +156,14 @@ def fight(monster, monster_health, monster_attack, prev_room, next_room):
         choice = input(prompt)
 
         if "potion" in choice or "heal" in choice:
-            heal_self()
-            print(f"You heal yoursel, your healthpoints are now at {health}")
-            remove_from_inventory("potion")
-            print(
-                f"The {monster} uses {monster_move(monster)} and deals {monster_damage} damage")
-            health -= monster_damage
-
-            if health <= 0:
-                dead()
-
-            print(f"You have {health} health left.")
+            if "potion" not in inventory:
+                print("You're out of potions :(")
+            else:
+                heal_self()
+                print(
+                    f"You heal yoursel, your healthpoints are now at {health}")
+                remove_from_inventory("potion")
+                print(f"You have {health} health left.")
 
         elif "attack" in choice:
             print(f"You swing your sword and deal {attack} damage.")
@@ -176,17 +175,17 @@ def fight(monster, monster_health, monster_attack, prev_room, next_room):
                 print()
                 monster_killed(monster)
                 go_to_room(next_room)
+            else:
+                print(f"The {monster} has {monster_health} health left.")
+                print(
+                    f"The {monster} uses {monster_move(monster)} and deals {monster_damage} damage")
 
-            print(f"The {monster} has {monster_health} health left.")
-            print(
-                f"The {monster} uses {monster_move(monster)} and deals {monster_damage} damage")
+                health -= monster_damage
 
-            health -= monster_damage
+                if health <= 0:
+                    dead()
 
-            if health <= 0:
-                dead()
-
-            print(f"You have {health} health left.")
+                print(f"You have {health} health left.")
         elif "block" in choice:
             print("You use your shield to block the attack.")
             print(f"The {monster} deals 0 damage")
@@ -216,7 +215,7 @@ def room1():
     while True:
         choice = input(prompt)
 
-        if "sword" in choice and not "sword" in inventory:
+        if "sword" in choice or "pick" in choice and not "sword" in inventory:
             print("Nice! You are wielding an old rusty sword now.")
             add_to_inventory("sword")
         elif "north" in choice or "path" in choice:
@@ -422,7 +421,7 @@ def room8():
     print("To the south is a ladder.")
 
     while True:
-        chocie = input(prompt)
+        choice = input(prompt)
 
         if "west" in choice or "wooden door" in choice:
             room7()
@@ -445,15 +444,13 @@ def room9():
 
     if skeleton_warrior_alive == True:
         print("You take the narrow path and enter a room and a skeleton suddenly attacks you! ")
-        fight("skeleton warrior", 100, 55, 8, 8)
-
-        add_to_inventory("golden key")
-
-        print("The skeleton dropped a shiny golden key.")
-        print("You take the key and return to the previous room.")
+        fight("skeleton warrior", 100, 55, 8, 9)
     else:
-        print("You take the narrow path and enter the room.")
-        print("There is only a couple of bones on the floor nothing and nothing else.")
+        print("There is only a couple of bones on the floor and nothing else.")
+
+    if skeleton_warrior_alive == False and "golden key" not in inventory:
+        add_to_inventory("golden key")
+        print("The skeleton dropped a shiny golden key. You take the key.")
 
     print("To the west is a narrow path.")
 
@@ -468,36 +465,30 @@ def room9():
 
 def room10():
     print("You see a blacksmith sitting alone in the corner.")
+    print("To the north is a ladder.")
 
-    if "sword+" in inventory:
+    if "+" not in inventory:
         print("Blacksmith: Hi young adventurer, would you like me to repair your sword?")
 
+    while True:
         choice = input(prompt)
 
-        if "yes" in choice or "repair" in choice:
+        if "north" in choice or "ladder" in choice:
+            room8()
+        if "yes" in choice or "repair" in choice and "+" not in inventory:
             print(
                 "The blacksmith takes your sword and his hammer and starts working...")
-            print("He gives you back your fixed sword, damn looks good.")
+            print("He gives you back your fixed sword. It looks brand new!")
             print("Blacksmith: Take this potion too, you might need it soon.")
 
             add_to_inventory("potion")
-            add_to_inventory("sword+")
+            add_to_inventory("+")
+        elif "repair" in choice or "blacksmith" in choice:
+            print("Looks like he is ignoring you...")
         elif "no" in choice:
             print("Totally up to you my friend.")
         else:
-            pass
-
-        print("To the north is a ladder.")
-
-        while True:
-            choice = input(prompt)
-
-            if "north" in choice or "ladder" in choice:
-                room8()
-            elif "repair" in choice or "blacksmith" in choice:
-                print("Looks like he is ignoring you...")
-            else:
-                print("I dont know what that means...")
+            print("I dont know what that means...")
 
 
 def room11():
@@ -512,8 +503,7 @@ def room11():
         choice = input(prompt)
 
         if "fight" in choice or "attack" in choice or "hit" in choice:
-            fight("red dragon", 170, 65, 8, 12)
-            room12()
+            fight("red dragon", 210, 65, 8, 12)
         elif "sing" in choice or "lullaby" in choice:
             print("You start singing for the dragon.")
             print("The dragon's eyes become heavy and he falls back to a deep sleep.")
