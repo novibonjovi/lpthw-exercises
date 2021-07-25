@@ -198,7 +198,7 @@
 
     Empties the file. Watch out if you care about the file
 
-48. **file object `write('stuff)`**
+48. **file object `write('stuff')`**
 
     Writes "stuff" to the file
 
