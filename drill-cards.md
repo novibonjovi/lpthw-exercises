@@ -21,18 +21,18 @@
    remove directory
 
 07. **`pushd`**  
-   push directory
+   push directory  
    "Save where I am, then go here."
 
 08. **`popd`**  
    pop directory
 
 09. **`cp`**  
-   copy a file or directory
+   copy a file or directory  
    overwrites existing files
 
 10. **`mv`**  
-    move a file or directory
+    move a file or directory  
     rename a file or directory
 
 11. **`less`**  
@@ -42,7 +42,7 @@
     print the whole file
 
 13. **`xargs`**  
-    execute arguments
+    execute arguments  
     construct argument list(s) and execute utility
 
 14. **`find`**  
@@ -135,282 +135,282 @@
     ## Data Typed
 
 01. **`True` and `False`**  
-    Boolean values.
-    `True or False == True`
+    Boolean values.  
+    `True or False == True`  
     `False and True == False`
 
 02. **`None`**  
-    Represents "nothing" or "no value".
+    Represents "nothing" or "no value".  
     `x = None`
 
 03. **`bytes`**  
-    Stores bytes, maybe of text, PNG, file, etc.
+    Stores bytes, maybe of text, PNG, file, etc.  
     `x = b"hello"`
 
 04. **`strings`**  
-    Stores textual information.
+    Stores textual information.  
     `x = "hello"`
 
 05. **`numbers`**  
-    Stores integers.
+    Stores integers.  
     `i = 100`
 
 06. **`floats`**  
-    Stores decimals.
+    Stores decimals.  
     `i = 10.389`
 
 07. **`lists`**  
-    Stores a list of things.
+    Stores a list of things.  
     `j = [1,2,3,4]`
 
 08. **`dicts`**  
-    Stores a key=value mapping of things.
+    Stores a key=value mapping of things.  
     `e = {'x': 1, 'y': 2}`
 
 
     ## Operators
 
 01. **`+`**  
-    Addition
+    Addition  
     `2 + 4 == 6`
 
 02. **`-`**  
-    Subtraction
+    Subtraction  
     `2 - 4 == -2`
 
 03. **`*`**  
-    Multiplication
+    Multiplication  
     `2 * 4 == 8`
 
 04. **`**`**  
-    Power of
+    Power of  
     `2 ** 4 == 16`
 
 05. **`/`**  
-    Division
+    Division  
     `2 / 4 == 0.5`
 
 06. **`//`**  
-    Floor Division
+    Floor Division  
     `2// 4 == 0`
 
 07. **`%`**  
-    Modulus or String interpolate
+    Modulus or String interpolate  
     `2 % 4 == 2`
 
 08. **`<`**  
-    Less than
+    Less than  
     `2 < 4 == True`
 
 09. **`>`**  
-    Greater than
+    Greater than  
     `2 > 4 == False`
 
 10. **`<=`**  
-    Less than equal
+    Less than equal  
     `4 <= 4 == True`
 
 11. **`>=`**  
-    Greater than equal
+    Greater than equal  
     `4 >= 4 == True`
 
 12. **`==`**  
-    Equal
+    Equal  
     `4 == 5 == False`
 
 13. **`!=`**  
-    Not equal
+    Not equal  
     `4 != 5 == True`
 
 14. **`( )`**  
-    Parenthesis
+    Parenthesis  
     `len('hi') == 2`
 
 15. **`[ ]`**  
-    List brackets
+    List brackets  
     `[1,3,5]`
 
 16. **`{ }`**  
-    Dict curly braces
+    Dict curly braces  
     `{'x': 5, 'y': 10}`
 
 17. **`@`**  
-    At (decorators)
+    At (decorators)  
     `@classmethod`
 
 18. **`,`**  
-    Comma
+    Comma  
     `range(0, 10)`
 
 19. **`:`**  
-    Colon
+    Colon  
     `def X(): pass`
 
 20. **`.`**  
-    Dot
+    Dot  
     `self.x = 10`
 
 21. **`=`**  
-    Assign equal
+    Assign equal  
     `x = 10`
 
 22. **`;`**  
-    Semi-colon
+    Semi-colon  
     `print("hi"); print("there")`
 
 23. **`+=`**  
-    Add and assign
+    Add and assign  
     `x = 1; x += 2`
 
 24. **`-=`**  
-    Subtract and assign
+    Subtract and assign  
     `x = 1; x -= 2`
 
 25. **`*=`**  
-    Multiply and assign
+    Multiply and assign  
     `x = 1; x *= 2`
 
 26. **`/=`**  
-    Divide and assign
+    Divide and assign  
     `x = 1; x /= 2`
 
 27. **`//=`**  
-    Floor divide and assign
+    Floor divide and assign  
     `x = 1; x //= 2`
 
 28. **`%=`**  
-    Modulus assign
+    Modulus assign  
     `x = 1; x %= 2`
 
 29. **`**=`**  
-    Power assign
+    Power assign  
     `x = 1; x **= 2`
 
 
     ## Python Keywords
 
 01. **`and`**  
-    Logical and
+    Logical and  
     `True and False == False`
 
 02. **`as`**  
-    Part of the with-as statement.
+    Part of the with-as statement.  
     `with X as Y: pass`
 
 03. **`assert`**  
-    Assert (ensure) that something is true.
+    Assert (ensure) that something is true.  
     `assert False, "Error!"`
 
 04. **`break`**  
-    Stop this loop right now.
+    Stop this loop right now.  
     `while True: break`
 
 05. **`class`**  
-    Define a class.
+    Define a class.  
     `class Person(object)`
 
 06. **`continue`**  
-    Don't process more of the loop, do it again.
+    Don't process more of the loop, do it again.  
     `while True: continue``
 
 07. **`def`**  
-    Define a funtion.
+    Define a funtion.  
     `def X(): pass``
 
 08. **`del`**  
-    Delete from dictionary.
+    Delete from dictionary.  
     `del X[Y]`
 
 09. **`elif`**  
-    Else if condition.
+    Else if condition.  
     `if: X; elif: Y; else: J``
 
 10. **`else`**  
-    Else condition.
+    Else condition.  
     `if: X; else: Y``
 
 11. **`except`**  
-    If an exception happens, do this.
+    If an exception happens, do this.  
     `except ValueError as e: print(e)``
 
 12. **`exec`**  
-    Run a string as Python.
+    Run a string as Python.  
     `exec 'print("hello")'`
 
 13. **`finally`**  
-    Exceptions or not, finally do this no matter what.
+    Exceptions or not, finally do this no matter what.  
     `finally: pass`
 
 14. **`for`**  
-    Loop over a collection of things.
+    Loop over a collection of things.  
     `for X in Y: pass`
 
 15. **`from`**  
-    Importing specific parts of a module.
+    Importing specific parts of a module.  
     `from x import Y`
 
 16. **`global`**  
-    Declare that you want a global variable. (bad practice)
+    Declare that you want a global variable. (bad practice)  
     `global X`
 
 17. **`if`**  
-    If condition.
+    If condition.  
     `if: X; else: Y`
 
 18. **`import`**  
-    Import a module into this one to use.
+    Import a module into this one to use.  
     `import os`
 
 19. **`in`**  
-    Part of for-loops. Also a test of X in Y.
+    Part of for-loops. Also a test of X in Y.  
     `for X in Y: pass` also `1 in [1] == True`
 
 20. **`is`**  
-    Like == to test equality.
+    Like == to test equality.  
     `1 is 1 == True`
 
 21. **`lambda`**  
-    Create a short anonymous function.
+    Create a short anonymous function.  
     `s = lambda y: y ** y; s(3)`
 
 22. **`not`**  
-    Logical not.
+    Logical not.  
     `not True == False`
 
 23. **`or`**  
-    Logical or.
+    Logical or.  
     `True or False == True`
 
 24. **`pass`**  
-    This block is empty.
+    This block is empty.  
     `def empty(): pass`
 
 25. **`print`**  
-    Print this string.
+    Print this string.  
     `print('this string')`
 
 26. **`raise`**  
-    Raises an exception when things go wrong.
+    Raises an exception when things go wrong.  
     `raise ValueError("No")`
 
 27. **`return`**  
-    Exit the function with a return value.
+    Exit the function with a return value.  
     `def X(): return Y`
 
 28. **`try`**  
-    Try this block, and if exception, go to `except`.
+    Try this block, and if exception, go to `except`.  
     `try: pass`
 
 29. **`while`**  
-    While loop.
+    While loop.  
     `while X: pass`
 
 30. **`with`**  
-    With an expression as a variable do.
+    With an expression as a variable do.  
     `with X as Y: pass`
 
 31. **`yield`**  
-    Pause here and return to caller.
+    Pause here and return to caller.  
     `def X(): yield Y; X().next()`
 
     ## Python others
