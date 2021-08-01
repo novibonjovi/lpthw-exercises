@@ -413,6 +413,56 @@
     Pause here and return to caller.  
     `def X(): yield Y; X().next()`
 
+    ## Object-Oriented Python
+
+01. **`class`**  
+    Tell Python to make a new type of thing.
+
+02. **`object`**  
+    Two meanings: the most basic type of thing and any instance of some thing.
+
+03. **`instance`**  
+    What you get when you tell Python to create a class.
+
+04. **`def`**  
+    How you define a function inside a class.
+
+05. **`self`**
+    Inside the functions in a class, self is a variable for the instance/object being accessed.
+
+06. **`inheritance`**  
+    The concept that one class can inherit traits from another class, much like you and your parents.
+
+07. **`composition`**  
+    The concept that a class can be composed of other classes as parts, much like how a car has wheels.
+
+08. **`attribute`**  
+    A property classes have that are from composition and are usually variables.
+
+09. **`is-a`**  
+    A phrase to say that something inherits form another, as in a "ssalmon" is-a "fish".
+
+10. **`has-a`**  
+    A phrase to say that something is composed of other things or has a trait, as in "a salmon has-a mouth".
+
+11. **`class X(Y)`**  
+    "Make a class named X that is-a Y"
+
+12. **`class X(object): def __init__(self, J)`**  
+    class X has-a __init__ that takes self and J parameters.
+
+13. **`class X(object): def M(self, J)`**  
+    class X has-a function named M that takes self and J parameters.
+
+14. **`foo = X()`**  
+    Set foo to an instance of class X.
+
+15. **`foo.M(J)`**  
+    From foo, get the M function, and call it with parameters self, J.
+
+16. **`foo.K = Q`**  
+    From foo, get the K attribute, and set it to Q.
+
     ## Python others
 
 01. **`end=' '`**  
